@@ -1,9 +1,11 @@
 import * as el from "../pages";
+import faker from "faker";
+const email2 = faker.internet.email()
 describe("Osmi TestCase", function () {
   it("Validate mandatory fields", function () {
     el.homepage.goToLoginPage();
-    el.homepage.validateMandatoryFields();
-    cy.get(el.homepage.input.email).should("have.value", "primer1@mail.com");
+    el.homepage.validateMandatoryFields(email2);
+    cy.get(el.homepage.input.email).should("have.value", email2);
     cy.get(el.homepage.button.register).click();
     cy.get(".alert")
       .contains("You must register at least one phone number.")
