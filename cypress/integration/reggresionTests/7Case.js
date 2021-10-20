@@ -1,10 +1,11 @@
 import * as el from "../pages";
+import faker from "faker";
+const email2 = faker.internet.email()
 describe("Sedmi TestCase", function () {
-  it("Check email address field validation - positive ", function () {
-    el.homepage.goToLoginPage();
-    cy.get("#create-account_form").should("be.visible");
-    cy.get(el.homepage.input.emailInput).type("primer1@mail.com");
-    cy.get(el.homepage.button.createAnAccount).click();
-    cy.get("#account-creation_form").should("be.visible");
+  it("Validate email field locking", function () {
+    l.homepage.goToLoginPage();
+    el.homepage.validateMandatoryFields(email2);
+    cy.get(el.homepage.input.email).should('have.value', email2);
+    cy.get(el.homepage.input.email).should("be.disabled"); // PROMENI NA BE.DISABLED
   });
 });
